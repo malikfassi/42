@@ -1,0 +1,25 @@
+{% extends "forum.html" %}
+{% block head %}
+	<title>Forum</title>
+ {% endblock %}
+{% block content %}
+<h2> 
+<a style="color:black" href="/forum">FORUM</a> - <a style="color:black" href="/forum/cat-{{cat}}">{{cat}}</a>
+{%if message%}  - <a style="color:black" href="/forum/cat-{{cat}}/{{message.id}}">{{message.title}}</a>{%endif%}
+</h2>
+
+<a href="/forum/new_thread/{{cat}}" style="color:black">new post</a></br></br>
+
+{%if not parent%}
+<a href="/forum/new_sub_cat/{{cat}}" style="color:black">new sub_cat</a></br></br>
+{%endif%}
+
+{% for thread in threads %}
+<a style="color:black" href="/forum/cat-{{cat}}/{{thread.id}}">{{thread.title}}</a></br>
+{{thread.message}} <strong>- by : {{thread.author}}</strong></br></br>
+{% endfor %}
+{%if message%}
+<a style="color:black" href="/forum/cat-{{cat}}/{{message.id}}">{{message.title}}</a></br>
+{{message.message}} <strong>- by : {{message.author}}</strong></br></br>
+{%endif%}
+{% endblock %}

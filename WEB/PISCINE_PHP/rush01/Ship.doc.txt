@@ -1,0 +1,17 @@
+<- Ship ----------------------------------------------------------------------
+
+Ship inherits from the parent class Pawn. It represents all the object in touch
+with the Ship.
+
+The construct method call the parent method of Pawn.
+The setShield function set the health of the Shield.
+The setMax_shield function set maximum health possible for the shield.
+The setSpeed function set the speed of the Ship.
+The setBonus_speed function set the bonus speed for the Ship.
+The setPower function set the power of the Ship.
+The setOrientation function set the orientation of the Ship.
+The setWeapons function set the weapons of the Ship.
+The setBonus_weapon function set the bonus weapon of the Ship.
+The getBonus_weapon function set the bonus weapon of the Ship.
+
+---------------------------------------------------------------------- Ship ->

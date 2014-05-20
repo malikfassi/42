@@ -1,0 +1,19 @@
+<- Pawn ----------------------------------------------------------------------
+
+Pawn is the parent class of the program. It represents all the object present
+on the board.
+
+The construct method initialize all variables, that are necessary.
+The getHealth function returns the remaining health of the current ship.
+The getPos function returns the actual position of the ship.
+The getName function returns the name of the current ship.
+The getId function returns the id of the ship.
+The getDim function returns the dimension of the ship.
+
+The setHealth function set the health of the current ship.
+The setPos function set the actual position of the ship.
+The setId function set the id of the ship.
+The setDim function set the dimension of the ship.
+
+
+---------------------------------------------------------------------- Pawn ->

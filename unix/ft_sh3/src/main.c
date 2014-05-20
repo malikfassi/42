@@ -6,30 +6,31 @@
 /*   By: mfassi-f <mfassi-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/21 19:31:48 by mfassi-f          #+#    #+#             */
-/*   Updated: 2014/01/26 20:23:41 by mfassi-f         ###   ########.fr       */
+/*   Updated: 2013/12/30 16:34:41 by mfassi-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <main.h>
-#include <stdio.h>
-void	print_prompt(void)
+#include <signal.h>
+
+static char	*get_path(char **envp, char **cmd)
 {
-	ft_putstr("\x1B[37m(\x1B[0m");
-	ft_putstr("\x1B[36m");
-	ft_putstr(*find(get_env()->envp, "PWD=") + 4);
-	ft_putstr("\x1B[0m");
-	ft_putstr("\x1B[37m)\x1B[0m");
-	ft_putstr("\x1B[31m$>\x1B[0m");
-	ft_putstr("	\b");
+	char	**paths;
+	char	*part_path;
+	char	*path;
+
+	paths = ft_strsplit(envp[0] + 5, ':');
+	part_path = ft_strjoin(search_path(paths, cmd[0]), "/");
+	path = ft_strjoin(part_path, cmd[0]);
+	ft_strdel(&part_path);
+	free_arr(&paths);
+	return (path);
 }
 
-char	****get_cmd(void)
+static char	**get_cmd(void)
 {
 	char	*line;
-	char	**cmd_pvir;
-	char 	****cmds;
-	int		i;
-    char    *tab[5] = {"|", "<", ">", "<<", ">>"};
+	char	**cmd;
 
 	line = get_line();
 	if (ft_strlen(line) == 0)
@@ -37,38 +38,54 @@ char	****get_cmd(void)
 		ft_strdel(&line);
 		return (NULL);
 	}
-	cmd_pvir = ft_strsplit(line, ';');
-	cmds = (char ****)malloc(sizeof(char ***) * (len_arr(cmd_pvir) + 1));
-	i = 0;
-	while (cmd_pvir[i])
-	{
-		cmds[i] = parse_op(cmd_pvir[i], tab);
-		i++;
-	}
-	cmds[i] = NULL;
-	free_arr(&cmd_pvir);
+	cmd = ft_strsplit(line, ' '); //Gestion des guillemets
 	ft_strdel(&line);
-	return (cmds);
+	return (cmd);
 }
 
-int	main(int argc, char **argv, char **envp)
+static int		implemented_function(char **cmd, char ***envp)
 {
-	t_env	*env;
-
-	env = get_env();
-	env->fd_in = dup(0);
-	env->fd_out = dup(1);
-	set_envp(env, envp);
-	while (argc == 1 && argv)
+	if (!cmd)
+		return (1);
+	if (ft_strcmp(cmd[0], "exit") == 0)
 	{
-		print_prompt();
-		signal_gest();
-		CMDS = get_cmd();
-		if (!CMDS) //&& if cmd is empty
-			continue ;
-		exec_cmds();
-		dup2(get_env()->fd_in, 0);
-		dup2(get_env()->fd_out, 1);
+		free_arr(&cmd);
+		return (-1);
 	}
+	else if (ft_strcmp(cmd[0], "env") == 0)
+		ft_env(*envp, cmd);
+	else if (ft_strcmp(cmd[0], "cd") == 0)
+		ft_cd(cmd, *envp);
+	else if (ft_strcmp(cmd[0], "setenv") == 0)
+		*envp = ft_setenv(cmd, *envp);
+	else if (ft_strcmp(cmd[0], "unsetenv") == 0)
+		*envp = ft_unsetenv(cmd, *envp);
+	else
+		return (0);
+	return (1);
+}
+
+int		main(int argc, char **argv, char **envp)
+{
+	char	**cmd;
+	pid_t	pid;
+	int		ret;
+
+	cmd = get_cmd();
+	ret = implemented_function(cmd, &envp);
+	if (ret == -1)
+		exit(0);
+	else if (ret == 1)
+		continue ;
+	pid = fork();
+	if (pid == 0 && execve(get_path(envp, cmd), cmd, envp) == -1)
+	{
+		ft_putstr("42sh: command not found: ");
+		ft_putendl(cmd[0]);
+		exit(0);
+	}
+	if (pid < 0)
+		ft_putstr("fork failed\n");
+	wait(0);
 	return (0);
 }

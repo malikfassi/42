@@ -6,11 +6,13 @@
 /*   By: mfassi-f <mfassi-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/25 18:18:26 by mfassi-f          #+#    #+#             */
-/*   Updated: 2014/01/19 14:11:15 by mfassi-f         ###   ########.fr       */
+/*   Updated: 2013/12/30 16:37:49 by mfassi-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <main.h>
+#include <ft_cd1.h>
+#include <ft_cd2.h>
+#include <search_path.h>
 
 static void	cd_back(char **pwd, char **old_pwd)
 {
@@ -56,7 +58,7 @@ static void	cd_front(char **pwd, char **old_pwd, char *path)
 
 static void	cd_replace(char **pwd, char **old_pwd, char *path)
 {
-	if (access(path, F_OK || X_OK) == 0)
+	if (access(path, F_OK || X_OK) == 0) //ft_access
 	{
 		*old_pwd = ft_strjoin("OLDPWD=", *pwd + 3);
 		*pwd = ft_strjoin("PWD=", path);
@@ -68,17 +70,17 @@ static void	cd_replace(char **pwd, char **old_pwd, char *path)
 	}
 }
 
-void	execute_cd(char **pwd, char **old_pwd, char *path)
+void	execute_cd(char **pwd, char **old_pwd, char *path, char **envp)
 {
 	if (ft_strcmp(path, "~") == 0)
-		cd_tild(pwd, old_pwd, find(ENVP, "HOME="));
+		cd_tild(pwd, old_pwd, find(envp, "HOME="));
 	else if (ft_strcmp(path, "..") == 0)
 		cd_back(pwd, old_pwd);
 	else if (ft_strcmp(path, "."))
 		cd_front(pwd, old_pwd, path);
 }
 
-void	ft_cd(char **cmd)
+void	ft_cd(char **cmd, char **envp)
 {
 	char	**dirs;
 	int		i;
@@ -86,8 +88,8 @@ void	ft_cd(char **cmd)
 	char	**old_pwd;
 
 	i = 0;
-	pwd = find(ENVP, "PWD=");
-	old_pwd = find(ENVP, "OLDPWD=");
+	pwd = find(envp, "PWD=");
+	old_pwd = find(envp, "OLDPWD=");
 	if (cmd[1])
 	{
 		if (ft_strncmp(cmd[1], "/", 1) == 0)
@@ -97,12 +99,12 @@ void	ft_cd(char **cmd)
 			dirs = ft_strsplit(cmd[1], '/');
 			while (dirs[i])
 			{
-				execute_cd(pwd, old_pwd, dirs[i]);
+				execute_cd(pwd, old_pwd, dirs[i], envp);
 				i++;
 			}
 		}
 	}
 	else
-		cd_tild(pwd, old_pwd, find(ENVP, "HOME="));
+		cd_tild(pwd, old_pwd, find(envp, "HOME="));
 	chdir(*pwd + 4);
 }

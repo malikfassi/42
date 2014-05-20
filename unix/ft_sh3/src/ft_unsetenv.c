@@ -6,13 +6,16 @@
 /*   By: mfassi-f <mfassi-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 17:14:48 by mfassi-f          #+#    #+#             */
-/*   Updated: 2014/01/19 14:09:17 by mfassi-f         ###   ########.fr       */
+/*   Updated: 2013/12/27 19:19:59 by mfassi-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <main.h>
+#include <ft_unsetenv.h>
+#include <libft.h>
+#include <ft_env.h>
+#include <utils.h>
 
-char	**ft_unsetenv(char **cmd)
+char	**ft_unsetenv(char **cmd, char **envp)
 {
 	char	**field;
 	int		i;
@@ -23,15 +26,15 @@ char	**ft_unsetenv(char **cmd)
 	j = 0;
 	if (len_arr(cmd) != 2)
 		ft_putstr("Usage : unsetenv <enVar1>\n");
-	if (!*(field = find(ENVP, cmd[1])) || len_arr(cmd) != 2)
-		return (ENVP);
-	tmp = (char **)ft_memalloc(sizeof(char *) * (len_arr(ENVP)));
-	while (i < len_arr(ENVP))
+	if (!*(field = find(envp, cmd[1])) || len_arr(cmd) != 2)
+		return (envp);
+	tmp = (char **)ft_memalloc(sizeof(char *) * (len_arr(envp)));
+	while (i < len_arr(envp))
 	{
 		cmd[1] = ft_strtoupper(cmd[1]);
-		if (ft_strncmp(cmd[1], ENVP[i], ft_strlen(cmd[1])))
+		if (ft_strncmp(cmd[1], envp[i], ft_strlen(cmd[1])))
 		{
-			tmp[j] = ENVP[i];
+			tmp[j] = envp[i];
 			j++;
 		}
 		i++;

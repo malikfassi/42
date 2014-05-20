@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block head %}
+	
+	<title>{{title}}</title>
+	{% load staticfiles %}
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<link href="{% static "css/form.css" %}" rel="stylesheet" type="text/css">
+	<script src="{% static "js/tooltip.js" %}"></script>
+ {% endblock %}
+{% block content %}
+<h2> {{title}} </h2>
+<form method="post">
+{% csrf_token %}
+   {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}  {% if field.help_text %} <span class="question" data="{{field.help_text}}">?</span>{%endif%}
+        </div>
+    {% endfor %}
+<input type="submit" value="{{title}}"/>
+</form>
+{% endblock %}

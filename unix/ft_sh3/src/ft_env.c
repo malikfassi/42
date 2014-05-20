@@ -6,27 +6,23 @@
 /*   By: mfassi-f <mfassi-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/25 18:06:45 by mfassi-f          #+#    #+#             */
-/*   Updated: 2014/01/25 11:56:55 by mfassi-f         ###   ########.fr       */
+/*   Updated: 2013/12/25 18:14:12 by mfassi-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <main.h>
+#include <ft_env.h>
 
 void	print_arr(char **arr)
 {
 	int		i;
 
 	i = 0;
-	ft_putstr_fd("(", 2);
 	while (arr[i])
-	{
-		ft_putendl_fd(arr[i++], 2);
-		ft_putstr_fd(";\n", 2);
-	}
-	ft_putstr_fd(")", 2);
+		ft_putendl(arr[i++]);
 }
 
-void	ft_env()
+void	ft_env(char **envp, char **cmd)
 {
-	print_arr(ENVP);
+	(void) cmd;
+	print_arr(envp);
 }

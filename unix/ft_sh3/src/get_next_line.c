@@ -6,12 +6,12 @@
 /*   By: mfassi-f <mfassi-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/05 20:04:20 by mfassi-f          #+#    #+#             */
-/*   Updated: 2014/01/25 11:31:47 by mfassi-f         ###   ########.fr       */
+/*   Updated: 2013/12/25 15:45:58 by mfassi-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <main.h>
-
+#include <get_next_line.h>
+#include <libft.h>
 
 int	get_next_line(int const fd, char **line)
 {
@@ -30,6 +30,5 @@ int	get_next_line(int const fd, char **line)
 		free(*line);
 		*line = tmp;
 	}
-	ft_strdel(&buf);
 	return (0);
 }

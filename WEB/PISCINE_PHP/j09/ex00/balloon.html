@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#circle {
+				border-radius: 50%;
+				background : red;
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="circle" onclick="circle_growth();" onmouseout="circle_shrink();"></div>
+		<script type="text/javascript">
+			function circle_growth()
+{
+	var circle = document.getElementById("circle");
+	var height =  circle.clientHeight;
+	var color = circle.style.background;
+	var new_height = (parseInt(height) + 20).toString();
+	if (parseInt(new_height) > 420)
+		new_height = "200";
+	if (color == "green")
+		color = "blue";
+	else if (color == "blue")
+		color = "red";
+	else
+		color = "green";
+	circle.style.height = new_height+"px";
+	circle.style.width = new_height+"px";
+	circle.style.background = color;
+}		
+function circle_shrink()
+{
+	var circle = document.getElementById("circle");
+	var height =  circle.clientHeight;
+	var color = circle.style.background;
+	var new_height = (parseInt(height) - 5).toString();
+	if (parseInt(height) == 200)
+		new_height = "200";
+	if (color == "green")
+		color = "red";
+	else if (color == "blue")
+		color = "green";
+	else
+		color = "blue";
+	circle.style.height = new_height+"px";
+	circle.style.width = new_height+"px";
+	circle.style.background = color;
+
+}
+</script>
+	</body>
+</html>

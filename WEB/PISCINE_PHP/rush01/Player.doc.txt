@@ -1,0 +1,7 @@
+<- Player ----------------------------------------------------------------------
+
+Player cannot inherits from the anybody. It will have all the information
+concerning the players.
+
+The construct method initialize the array containing all the ships of a player.
+---------------------------------------------------------------------- Player ->

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#circle {
+				border-radius: 50%;
+				width: auto;
+				height: 100%;
+				text-align = center;
+			}
+		</style>
+	</head>
+	<body>
+		<input id="operand1" type="text">
+		<select id="operator">
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+			<option value="%">%</option>
+		</select>
+		<input type="text" id = "operand2">
+		<input id="circle" type="submit" value="Try me!" onclick="calc();"></input>
+		<script type="text/javascript">
+			setInterval(function() {
+					    alert("Please use me...");
+						}, 30000);
+		function isNumeric(n) {
+			  return !isNaN(parseInt(n)) && isFinite(n);
+		}
+			function calc()
+{
+	var operand1 = document.getElementById("operand1");
+	var operand2 = document.getElementById("operand2");
+	var operator = document.getElementById("operator");
+	var operand1_val = operand1.value;
+	var operand2_val = operand2.value;
+	var operator_val = operator.value;
+	console.log("operand1_val = "+operand1_val+" operand2_val = "+operand2_val);
+	if (isNumeric(operand1_val) && parseInt(operand1_val) >= 0 && isNumeric(operand2_val) && parseInt(operand2_val) >= 0)
+	{
+		operand2_val = parseInt(operand2_val);
+		operand1_val = parseInt(operand1_val);
+		if ((operator_val == "/" || operator_val == "%") && operand2_val == 0)
+			alert("It's over 9000!");
+		else
+		{
+			var result;
+			if (operator_val == "*")
+				result = operand1_val* operand2_val;
+			if (operator_val == "/")
+				result = operand1_val / operand2_val;
+			if (operator_val == "%")
+				result = operand1_val % operand2_val;
+			if (operator_val == "-")
+				result = operand1_val - operand2_val;
+			if (operator_val == "+")
+				result = operand1_val + operand2_val;
+			alert(result);
+			console.log(result);
+		}
+	}
+	else
+		alert("Error :(");
+/*	var new_height = (parseInt(height) + 20).toString();
+	console.log("avant : "+color);
+	if (parseInt(height) > 420)
+		new_height = "200";
+	if (color == "green")
+		color = "blue";
+	else if (color == "blue")
+		color = "red";
+	else
+		color = "green";
+	circle.style.height = new_height+"px";
+	circle.style.width = new_height+"px";
+	circle.style.background = color;*/
+}		
+</script>
+	</body>
+</html>

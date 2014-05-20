@@ -1,0 +1,17 @@
+
+<style>
+.errorList{
+	color:red;
+}
+</style>
+
+{% block content %}
+
+<h2> Sign in </h2>
+
+<form action="." method="post">
+{% csrf_token %}
+{{form.as_p}}
+<input type="submit" value="signin"/>
+</form>
+{% endblock %}

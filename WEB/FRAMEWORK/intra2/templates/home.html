@@ -1,0 +1,13 @@
+<html>
+<head>
+{%extends "base.html" %}
+ 
+{% block content %}
+{% if user.is_authenticated %} Welcome, {{ user.username }}.
+{%else%}
+Please login. ==> <a href="/login/" style="color:black">[Login]</a>
+{%endif%}
+{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,35 @@
+<html>
+<head>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  {% load staticfiles %}
+<link href="{% static "css/home.css" %}" rel="stylesheet" type="text/css">
+{% block head %} {% endblock %}
+</head>
+<!-- header html template -->
+  {% load staticfiles %}
+	<a href="/"><img id="logo" src="{% static "logo42-site.gif" %}" alt="42"/></a>
+{% block lateral %}{% if user.is_staff %}
+<form action="." method="post" class="lateral">
+{% csrf_token %}
+<input type="submit" value="Send Email to all Users" name="SendEmail"/>
+</form>
+{% endif %}{% endblock%}
+<header>
+  <div id="header">
+    <div class="navh">
+        <a href="/" id="title" style="float:left">Home {% if user.is_authenticated %} - {{ user.username }}</a> 
+        <a href="/logout/">logout</a>
+        <a href="/forum/">forum</a>
+        {% else %}
+   	<a href="/login/">login</a>
+   	<a href="/signin/">signin</a>
+        {% endif %}
+   	</div>
+  </div>
+</header>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>
+

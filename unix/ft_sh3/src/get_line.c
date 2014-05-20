@@ -6,11 +6,11 @@
 /*   By: mfassi-f <mfassi-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/21 21:01:07 by mfassi-f          #+#    #+#             */
-/*   Updated: 2014/01/19 12:44:18 by mfassi-f         ###   ########.fr       */
+/*   Updated: 2013/12/25 16:17:34 by mfassi-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <main.h>
+#include <get_line.h>
 
 char	*get_line(void)
 {

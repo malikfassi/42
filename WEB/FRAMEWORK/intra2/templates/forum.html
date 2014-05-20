@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block head %}
+	<title>Forum</title>
+ {% endblock %}
+
+{% block content %}
+<h2> FORUM </h2>
+<a href="new_cat" style="color:black">new category</a>
+{% endblock %}
+
+{%block lateral%}
+<ul class="lateral">
+{%for cat in allcat %}
+<li class="lateral_elem"><a style="color:black {%if cat.parent%}; padding-left:10px; {%endif%}" href="/forum/cat-{{cat.title}}">{{cat.title}}</a></li>
+{% endfor %}
+</ul>
+{% endblock%}
+

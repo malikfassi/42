@@ -1,0 +1,4 @@
+dn: uid=mfassi-f,ou=2013,ou=people,dc=42,dc=fr
+changetype: modify
+add: mobile-phone
+mobile-phone: 0610258207

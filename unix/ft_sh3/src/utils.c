@@ -6,11 +6,14 @@
 /*   By: mfassi-f <mfassi-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/26 14:25:15 by mfassi-f          #+#    #+#             */
-/*   Updated: 2014/01/19 12:45:25 by mfassi-f         ###   ########.fr       */
+/*   Updated: 2013/12/30 16:19:33 by fmarin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <main.h>
+#include <utils.h>
+#include <ft_env.h>
+#include <libft.h>
+#include <stdlib.h>
 
 char	**find(char **src, char *to_find)
 {

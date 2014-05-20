@@ -6,11 +6,11 @@
 /*   By: mfassi-f <mfassi-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 19:21:45 by mfassi-f          #+#    #+#             */
-/*   Updated: 2014/01/19 12:42:58 by mfassi-f         ###   ########.fr       */
+/*   Updated: 2013/12/30 16:12:19 by fmarin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <main.h>
+#include <libft.h>
 
 int	len_last_dir(char **pwd)
 {

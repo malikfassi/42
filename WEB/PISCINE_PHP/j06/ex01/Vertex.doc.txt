@@ -1,0 +1,43 @@
+<- Vertex ----------------------------------------------------------------------
+An instance can be contructed from x, y, and z value:
+new Vertex( array( 'x' => 0.0, 'y' => 0.0, 'z' => 0.0 ) );
+
+With an optional color value:
+$green = new Color( array( 'red' =>   0, 'green' => 255, 'blue' =>   0 ) );
+new Vertex( array( 'x' => 1.0, 'y' => 0.0, 'z' => 0.0, 'color' => $green ) );
+
+With an optional w value:
+new Vertex( array( 'x' => 9.0, 'y' => 9.0, 'z' => 9.0, 'w' => 3.0 ) );
+
+The class provides the following methods :
+
+Color   getX();
+returns the x variable of the vertex instance;
+
+Color   getY();
+returns the y variable of the vertex instance;
+
+Color   getZ();
+returns the z variable of the vertex instance;
+
+Color   getW();
+return the w variable of the vertex instance;
+
+Color   getColor();
+return the color variable of the vertex instance;
+
+Color   setX($x);
+sets the x variable of the vertex instance as the value of $x parameter;
+
+Color   setY($y);
+sets the y variable of the vertex instance as the value of $y parameter;
+
+Color   setZ($z);
+sets the z variable of the vertex instance as the value of $z parameter;
+
+Color   setW($w);
+sets the w variable of the vertex instance as the value of $w parameter;
+
+Color   setColor($color);
+sets the color variable of the vertex instance as the value of $color parameter;
+---------------------------------------------------------------------- Vertex ->

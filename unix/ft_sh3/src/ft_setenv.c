@@ -6,11 +6,14 @@
 /*   By: mfassi-f <mfassi-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/26 20:50:01 by mfassi-f          #+#    #+#             */
-/*   Updated: 2014/01/19 14:08:36 by mfassi-f         ###   ########.fr       */
+/*   Updated: 2013/12/30 16:13:03 by fmarin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <main.h>
+#include <ft_setenv.h>
+#include <utils.h>
+#include <libft.h>
+#include <ft_env.h>
 
 static char	**create_tmp(char **tmp, char **cmd, int i)
 {
@@ -21,7 +24,7 @@ static char	**create_tmp(char **tmp, char **cmd, int i)
 	return (tmp);
 }
 
-char		**ft_setenv(char **cmd)
+char		**ft_setenv(char **cmd, char **envp)
 {
 	char	**field;
 	int		i;
@@ -31,18 +34,18 @@ char		**ft_setenv(char **cmd)
 	if (len_arr(cmd) != 3)
 	{
 		ft_putstr("Usage : setenv <envVar1 envVar2>\n");
-		return (ENVP);
+		return (envp);
 	}
-	if (*(field = find(ENVP, cmd[1])))
+	if (*(field = find(envp, cmd[1])))
 	{
 		*field = ft_strnjoin("", *field, ft_strchr(*field, '=') - *field + 1);
 		*field = ft_strjoin(*field, cmd[2]);
-		return (ENVP);
+		return (envp);
 	}
-	tmp = (char **)ft_memalloc(sizeof(char *) * (len_arr(ENVP) + 2));
-	while (i < len_arr(ENVP))
+	tmp = (char **)ft_memalloc(sizeof(char *) * (len_arr(envp) + 2));
+	while (i < len_arr(envp))
 	{
-		tmp[i] = ENVP[i];
+		tmp[i] = envp[i];
 		i++;
 	}
 	tmp = create_tmp(tmp, cmd, i);

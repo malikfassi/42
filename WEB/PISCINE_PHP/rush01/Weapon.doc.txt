@@ -1,0 +1,9 @@
+<-Weapons ----------------------------------------------------------------------
+
+Weapons cannot inherits from the anybody. It will have all the information
+concerning the weapon.
+
+The construct method initialize the array containing all the weapons of a player.
+The setCharges method set the charge of a weapon.
+The getCharges method get the charge of a weapon.
+---------------------------------------------------------------------- Weapons->

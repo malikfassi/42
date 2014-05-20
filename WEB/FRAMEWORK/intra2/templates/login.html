@@ -1,0 +1,19 @@
+{% if error %}
+<p><strong>Utilisateur inexistant ou mauvais de mot de passe.</strong></p>
+{% endif %}
+
+{% if user.is_authenticated %}
+Welcome, {{ user.username }} !  <a href="/logout">Logout</a> <a href="/"> Home </a></p>
+{% if user.is_staff %}
+<form action="." method="post">
+{% csrf_token %}
+<input type="submit" value="Send Email to all Users" name="SendEmail"/>
+</form>
+{% endif %}
+{% else %}
+<form method="post" action=".">
+ 	   {% csrf_token %}
+ 	   {{ form.as_p }}
+    <input type="submit"/><a href="/"> Home </a></p>
+</form>
+{% endif %}

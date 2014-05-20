@@ -6,13 +6,14 @@
 /*   By: mfassi-f <mfassi-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/23 19:10:05 by mfassi-f          #+#    #+#             */
-/*   Updated: 2014/01/19 12:45:11 by mfassi-f         ###   ########.fr       */
+/*   Updated: 2013/12/30 17:07:58 by mfassi-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <main.h>
+#include <search_path.h>
+#include <stdio.h>
 
-char	*reduce_one_slash_back(char *cmd)
+static char	*reduce_one_slash_back(char *cmd)
 {
 	int	len;
 
@@ -33,7 +34,7 @@ char	*reduce_one_slash_front(char *cmd)
 	return (ft_strsub(cmd, len + 1, ft_strlen(cmd)));
 }
 
-int	find_in_dir(DIR *dir, char *to_find)
+static int	find_in_dir(DIR *dir, char *to_find)
 {
 	struct dirent	*elem;
 
